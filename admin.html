@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EcoCollect - Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="navbar">
+
+        <h2>
+            EcoCollect Admin
+        </h2>
+
+        <a href="index.html">
+            Resident Page
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="dashboard">
+
+
+    <!-- DASHBOARD HEADER -->
+
+    <section class="dashboard-header">
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Manage waste collection requests.
+        </p>
+
+    </section>
+
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <h3>
+                Total Requests
+            </h3>
+
+            <p id="totalRequests">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Pending
+            </h3>
+
+            <p id="pendingRequests">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Approved
+            </h3>
+
+            <p id="approvedRequests">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Completed
+            </h3>
+
+            <p id="completedRequests">
+                0
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- DASHBOARD BUTTONS -->
+
+    <section class="dashboard-actions">
+
+        <button
+            type="button"
+            id="refreshButton"
+        >
+            Refresh
+        </button>
+    
+        <button
+            type="button"
+            id="deleteAllButton"
+        >
+            Delete All
+        </button>
+
+    </section>
+
+
+
+    <!-- RESIDENT REQUESTS -->
+
+    <section class="requests-section">
+
+        <h2>
+            Resident Collection Requests
+        </h2>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Select
+                        </th>
+
+                        <th>
+                            Request ID
+                        </th>
+
+                        <th>
+                            Resident
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Phone
+                        </th>
+
+                        <th>
+                            Area
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Time
+                        </th>
+
+                        <th>
+                            Waste
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="requestsTable">
+
+                    <tr>
+
+                        <td colspan="11">
+                            Loading requests...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        EcoCollect Waste Collection Scheduling System
+    </p>
+
+</footer>
+
+
+
+<!-- ADMIN JAVASCRIPT -->
+
+<script src="./admin.js"></script>
+
+
+</body>
+
+</html>

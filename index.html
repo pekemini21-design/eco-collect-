@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="EcoCollect Waste Collection Scheduling System">
+
+    <title>EcoCollect | Waste Collection Scheduling</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Eco<span>Collect</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#request">Request Collection</a>
+            <a href="#status">Check Status</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Smart Waste Collection Scheduling
+        </h1>
+
+        <p>
+            EcoCollect helps residents schedule waste
+            collection and monitor their collection request
+            status easily.
+        </p>
+
+        <a href="#request" class="btn">
+            Schedule Collection
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REQUEST FORM
+     ===================================================== -->
+
+<section id="request">
+
+    <div class="form-container">
+
+        <h2>
+            Request Waste Collection
+        </h2>
+
+        <form id="residentForm">
+
+            <!-- Full Name -->
+
+            <div class="form-group">
+
+                <label for="fullname">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Phone -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Address -->
+
+            <div class="form-group">
+
+                <label for="address">
+                    Residential Address
+                </label>
+
+                <textarea
+                    id="address"
+                    name="address"
+                    placeholder="Enter your residential address"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- Area -->
+
+            <div class="form-group">
+
+                <label for="area">
+                    Residential Area
+                </label>
+
+                <input
+                    type="text"
+                    id="area"
+                    name="area"
+                    placeholder="e.g. Shelter Afrique Estate"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Date and Time -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="collectionDate">
+                        Collection Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="collectionDate"
+                        name="collectionDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="collectionTime">
+                        Collection Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="collectionTime"
+                        name="collectionTime"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Waste Type -->
+
+            <div class="form-group">
+
+                <label for="wasteType">
+                    Waste Type
+                </label>
+
+                <select
+                    id="wasteType"
+                    name="wasteType"
+                    required
+                >
+
+                    <option value="">
+                        Select waste type
+                    </option>
+
+                    <option value="Household Waste">
+                        Household Waste
+                    </option>
+
+                    <option value="Organic Waste">
+                        Organic Waste
+                    </option>
+
+                    <option value="Plastic Waste">
+                        Plastic Waste
+                    </option>
+
+                    <option value="Paper Waste">
+                        Paper Waste
+                    </option>
+
+                    <option value="Mixed Waste">
+                        Mixed Waste
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit Collection Request
+            </button>
+
+        </form>
+
+
+        <!-- Submission Message -->
+
+        <div id="formMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATUS CHECK
+     ===================================================== -->
+
+<section
+    id="status"
+    class="status-section"
+>
+
+    <div class="status-container">
+
+        <div class="section-title">
+
+            <h2>
+                Check Collection Status
+            </h2>
+
+            <p>
+                Enter the email address used when submitting
+                your collection request.
+            </p>
+
+        </div>
+
+
+        <div class="status-form">
+
+            <form id="statusForm">
+
+                <div class="form-group">
+
+                    <label for="statusEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="statusEmail"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Check Request Status
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Status appears here -->
+
+        <div id="statusResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <p>
+        <strong>EcoCollect</strong>
+    </p>
+
+    <p>
+        Waste Collection Scheduling System
+    </p>
+
+    <p>
+        &copy; 2026 EcoCollect. All rights reserved.
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     RESIDENT JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

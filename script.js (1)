@@ -1,0 +1,599 @@
+"use strict";
+
+/* =====================================================
+   ECOCOLLECT - RESIDENT SCRIPT
+   Works with the supplied index.html
+   ===================================================== */
+
+const STORAGE_KEY = "ecocollectRequests";
+
+
+/* =====================================================
+   START AFTER HTML LOADS
+   ===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =================================================
+       GET REQUESTS
+       ================================================= */
+
+    function getRequests() {
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+        if (!saved) {
+            return [];
+        }
+
+        try {
+
+            const requests =
+                JSON.parse(saved);
+
+            return Array.isArray(requests)
+                ? requests
+                : [];
+
+        } catch (error) {
+
+            console.error(
+                "Error reading EcoCollect requests:",
+                error
+            );
+
+            return [];
+        }
+    }
+
+
+    /* =================================================
+       SAVE REQUESTS
+       ================================================= */
+
+    function saveRequests(requests) {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(requests)
+        );
+    }
+
+
+    /* =================================================
+       RESIDENT REQUEST FORM
+       ================================================= */
+
+    const residentForm =
+        document.getElementById("residentForm");
+
+
+    if (residentForm) {
+
+        residentForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                /* Get form fields */
+
+                const fullname =
+                    document
+                        .getElementById("fullname")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+
+                const address =
+                    document
+                        .getElementById("address")
+                        .value
+                        .trim();
+
+
+                const area =
+                    document
+                        .getElementById("area")
+                        .value
+                        .trim();
+
+
+                const collectionDate =
+                    document
+                        .getElementById("collectionDate")
+                        .value;
+
+
+                const collectionTime =
+                    document
+                        .getElementById("collectionTime")
+                        .value;
+
+
+                const wasteType =
+                    document
+                        .getElementById("wasteType")
+                        .value;
+
+
+                /* Validate */
+
+                if (
+                    fullname === "" ||
+                    email === "" ||
+                    phone === "" ||
+                    address === "" ||
+                    area === "" ||
+                    collectionDate === "" ||
+                    collectionTime === "" ||
+                    wasteType === ""
+                ) {
+
+                    alert(
+                        "Please complete all fields."
+                    );
+
+                    return;
+                }
+
+
+                /* Create request */
+
+                const request = {
+
+                    id: Date.now(),
+
+                    resident: fullname,
+
+                    email: email,
+
+                    phone: phone,
+
+                    address: address,
+
+                    area: area,
+
+                    collectionDate:
+                        collectionDate,
+
+                    collectionTime:
+                        collectionTime,
+
+                    wasteType:
+                        wasteType,
+
+                    status:
+                        "Pending",
+
+                    createdAt:
+                        new Date().toISOString()
+
+                };
+
+
+                /* Get existing requests */
+
+                const requests =
+                    getRequests();
+
+
+                /* Add new request */
+
+                requests.push(request);
+
+
+                /* Save request */
+
+                saveRequests(requests);
+
+
+                /* Show success message */
+
+                const formMessage =
+                    document.getElementById(
+                        "formMessage"
+                    );
+
+
+                if (formMessage) {
+
+                    formMessage.innerHTML = `
+                        <div class="message message-success">
+
+                            <strong>
+                                Request Submitted Successfully
+                            </strong>
+
+                            <p>
+                                Your waste collection request
+                                has been received.
+                            </p>
+
+                            <p>
+                                Current Status:
+                                <strong>Pending</strong>
+                            </p>
+
+                        </div>
+                    `;
+
+                }
+
+
+                /* Put email into status box */
+
+                const statusEmail =
+                    document.getElementById(
+                        "statusEmail"
+                    );
+
+
+                if (statusEmail) {
+
+                    statusEmail.value =
+                        email;
+
+                }
+
+
+                /* Clear request form */
+
+                residentForm.reset();
+
+
+                /* Scroll to status */
+
+                const statusSection =
+                    document.getElementById(
+                        "status"
+                    );
+
+
+                if (statusSection) {
+
+                    statusSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       STATUS FORM
+       ================================================= */
+
+    const statusForm =
+        document.getElementById("statusForm");
+
+
+    if (statusForm) {
+
+        statusForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                checkCollectionStatus();
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       CHECK COLLECTION STATUS
+       ================================================= */
+
+    function checkCollectionStatus() {
+
+        const statusEmail =
+            document.getElementById(
+                "statusEmail"
+            );
+
+
+        const statusResult =
+            document.getElementById(
+                "statusResult"
+            );
+
+
+        if (!statusEmail || !statusResult) {
+
+            return;
+        }
+
+
+        /* Get email */
+
+        const email =
+            statusEmail.value
+                .trim()
+                .toLowerCase();
+
+
+        /* Empty email */
+
+        if (email === "") {
+
+            statusResult.innerHTML = `
+                <div class="status-box pending">
+
+                    <div class="status-label">
+                        CHECK STATUS
+                    </div>
+
+                    <h3>
+                        Enter Your Email
+                    </h3>
+
+                    <p>
+                        Please enter the email address
+                        used for your request.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        /* Get requests */
+
+        const requests =
+            getRequests();
+
+
+        /* Find requests belonging to email */
+
+        const matchingRequests =
+            requests.filter(function (request) {
+
+                return (
+                    request.email &&
+                    request.email
+                        .trim()
+                        .toLowerCase() === email
+                );
+
+            });
+
+
+        /* No request found */
+
+        if (matchingRequests.length === 0) {
+
+            statusResult.innerHTML = `
+                <div class="status-box pending">
+
+                    <div class="status-label">
+                        NO REQUEST
+                    </div>
+
+                    <h3>
+                        No Request Found
+                    </h3>
+
+                    <p>
+                        We could not find a collection
+                        request using this email address.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        /* Get most recent request */
+
+        const request =
+            matchingRequests[
+                matchingRequests.length - 1
+            ];
+
+
+        const status =
+            request.status || "Pending";
+
+
+        /* =================================================
+           PENDING
+           ================================================= */
+
+        if (status === "Pending") {
+
+            statusResult.innerHTML = `
+                <div class="status-box pending">
+
+                    <div class="status-label">
+                        PENDING
+                    </div>
+
+                    <h3>
+                        Collection Request Pending
+                    </h3>
+
+                    <p>
+                        Your request has been received
+                        successfully.
+                    </p>
+
+                    <p>
+                        It is waiting for administrator
+                        approval.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Date:
+                        </strong>
+                        ${request.collectionDate}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Time:
+                        </strong>
+                        ${request.collectionTime}
+                    </p>
+
+                </div>
+            `;
+
+        }
+
+
+        /* =================================================
+           APPROVED
+           ================================================= */
+
+        else if (status === "Approved") {
+
+            statusResult.innerHTML = `
+                <div class="status-box approved">
+
+                    <div class="status-label">
+                        APPROVED
+                    </div>
+
+                    <h3>
+                        Collection Schedule Approved
+                    </h3>
+
+                    <p>
+                        Your collection schedule has
+                        been approved by the administrator.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Date:
+                        </strong>
+                        ${request.collectionDate}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Time:
+                        </strong>
+                        ${request.collectionTime}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Area:
+                        </strong>
+                        ${request.area}
+                    </p>
+
+                </div>
+            `;
+
+        }
+
+
+        /* =================================================
+           COMPLETED
+           ================================================= */
+
+        else if (status === "Completed") {
+
+            statusResult.innerHTML = `
+                <div class="status-box completed">
+
+                    <div class="status-label">
+                        COMPLETED
+                    </div>
+
+                    <h3>
+                        Collection Completed
+                    </h3>
+
+                    <p>
+                        Your waste collection has been
+                        completed successfully.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Date:
+                        </strong>
+                        ${request.collectionDate}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Collection Time:
+                        </strong>
+                        ${request.collectionTime}
+                    </p>
+
+                    <p>
+                        Thank you for using EcoCollect.
+                    </p>
+
+                </div>
+            `;
+
+        }
+
+
+        /* =================================================
+           OTHER STATUS
+           ================================================= */
+
+        else {
+
+            statusResult.innerHTML = `
+                <div class="status-box pending">
+
+                    <div class="status-label">
+                        ${status.toUpperCase()}
+                    </div>
+
+                    <h3>
+                        Request Status
+                    </h3>
+
+                    <p>
+                        Your current request status is:
+                        <strong>${status}</strong>
+                    </p>
+
+                </div>
+            `;
+
+        }
+
+    }
+
+});

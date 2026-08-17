@@ -1,0 +1,879 @@
+/* =========================================================
+   ECOCOLLECT
+   PROFESSIONAL SHARED STYLE.CSS
+   Works with:
+   - index.html
+   - admin.html
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    color: #1f2933;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+a {
+    text-decoration: none;
+}
+
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #e1e7e3;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.navbar {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #166534;
+}
+
+
+.logo span {
+    color: #22c55e;
+}
+
+
+.navbar h2 {
+    color: #166534;
+    font-size: 23px;
+}
+
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.navbar nav a,
+.navbar > a {
+    color: #166534;
+    font-weight: 600;
+}
+
+
+.navbar nav a:hover,
+.navbar > a:hover {
+    color: #22c55e;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(22, 101, 52, 0.88),
+            rgba(21, 128, 61, 0.82)
+        );
+
+    color: white;
+}
+
+
+.hero-content {
+    width: 92%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+}
+
+
+.btn {
+    display: inline-block;
+    background: white;
+    color: #166534;
+    padding: 13px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+
+.btn:hover {
+    background: #dcfce7;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+section {
+    padding: 70px 4%;
+}
+
+
+.form-container,
+.status-container {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+}
+
+
+.form-container h2,
+.status-container h2 {
+    text-align: center;
+    color: #166534;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-container {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+    color: #374151;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.status-form input,
+#adminSearch {
+    width: 100%;
+    padding: 13px 14px;
+
+    border: 1px solid #cbd5d1;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #1f2933;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.status-form input:focus,
+#adminSearch:focus {
+    border-color: #22c55e;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(34, 197, 94, 0.12);
+}
+
+
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.submit-btn {
+    width: 100%;
+    border: none;
+
+    background: #166534;
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+
+.submit-btn:hover {
+    background: #14532d;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+   ========================================================= */
+
+#formMessage {
+    margin-top: 20px;
+}
+
+
+.message {
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+
+.message-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+
+.message-warning {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+
+/* =========================================================
+   STATUS SECTION
+   ========================================================= */
+
+.status-section {
+    background: #eef5f0;
+}
+
+
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+.section-title h2 {
+    margin-bottom: 8px;
+}
+
+
+.status-form {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   RESIDENT STATUS CARD
+   ========================================================= */
+
+#statusResult {
+    margin-top: 25px;
+}
+
+
+.resident-status-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    border-left: 5px solid #22c55e;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+.resident-status-card h3 {
+    color: #166534;
+    margin-bottom: 15px;
+}
+
+
+.resident-status-card p {
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+.status-approved {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+
+.status-completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+.dashboard {
+    width: 94%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 0 70px;
+}
+
+
+.dashboard-header {
+    padding: 20px 0 30px;
+}
+
+
+.dashboard-header h1 {
+    color: #166534;
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+
+.dashboard-header p {
+    color: #64748b;
+}
+
+
+/* =========================================================
+   ADMIN STATISTICS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+    padding: 0 0 30px;
+}
+
+
+.stat-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8e5;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.stat-card h3 {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+
+.stat-card p,
+.stat-card .number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #166534;
+}
+
+
+/* =========================================================
+   ADMIN ACTION BAR
+   ========================================================= */
+
+.dashboard-actions {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    margin-bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border: 1px solid #e2e8e5;
+}
+
+
+.dashboard-actions #adminSearch {
+    flex: 1;
+}
+
+
+.dashboard-actions button {
+    border: none;
+
+    padding: 12px 16px;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+}
+
+
+#refreshButton,
+.refresh-btn {
+    background: #166534;
+    color: white;
+}
+
+
+#renewButton,
+.renew-btn {
+    background: #2563eb;
+    color: white;
+}
+
+
+#deleteAllButton,
+.clear-btn {
+    background: #dc2626;
+    color: white;
+}
+
+
+.dashboard-actions button:hover {
+    opacity: 0.88;
+}
+
+
+/* =========================================================
+   REQUEST SECTION
+   ========================================================= */
+
+.requests-section {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8e5;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.requests-section h2 {
+    color: #166534;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+    min-width: 1100px;
+
+    border-collapse: collapse;
+
+    background: white;
+}
+
+
+thead {
+    background: #166534;
+    color: white;
+}
+
+
+th,
+td {
+    padding: 13px 12px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+
+tbody tr:hover {
+    background: #f8faf9;
+}
+
+
+tbody tr:nth-child(even) {
+    background: #fafcfb;
+}
+
+
+.empty-state {
+    text-align: center;
+    padding: 35px;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   ADMIN STATUS SELECT
+   ========================================================= */
+
+.status-select {
+    padding: 8px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #1f2937;
+}
+
+
+.status-select:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.delete-button,
+.delete-btn {
+    border: none;
+
+    background: #dc2626;
+    color: white;
+
+    padding: 8px 11px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    margin-left: 5px;
+}
+
+
+.delete-button:hover,
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.request-checkbox {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    background: #123524;
+    color: white;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 20px;
+}
+
+
+footer p {
+    margin: 5px 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .dashboard-actions {
+        flex-wrap: wrap;
+    }
+
+
+    .dashboard-actions #adminSearch {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    .hero {
+        min-height: 420px;
+    }
+
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    section {
+        padding: 45px 4%;
+    }
+
+
+    .form-container {
+        padding: 22px;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .dashboard {
+        width: 94%;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+
+
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .dashboard-actions button {
+        width: 100%;
+    }
+
+
+    .requests-section {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .logo {
+        font-size: 21px;
+    }
+
+
+    .navbar h2 {
+        font-size: 20px;
+    }
+
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+
+    .form-container h2,
+    .status-container h2 {
+        font-size: 25px;
+    }
+
+
+    .stat-card p,
+    .stat-card .number {
+        font-size: 27px;
+    }
+
+}
+
+
+/* =========================================================
+   END OF STYLE.CSS
+   ========================================================= */
